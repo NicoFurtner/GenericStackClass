@@ -11,17 +11,19 @@ public class GenericStackClass<T> {
     }
     /**
      * push method adds an element to the stack
-     * @param element
+     * @param element element to be added
      */
     public void push(T element) throws StackFullException {
-        if(this.stack.length > zaehler + 1) {
+        if(this.stack.length < zaehler + 1) {
             throw new StackFullException();
         }
         stack[zaehler] = element;
         zaehler++;
     }
+
     /**
      * pop method removes the last added element
+     * @throws StackEmptyException stack is empty
      */
     public void pop() throws StackEmptyException {
         if(this.stack == null) {
@@ -31,6 +33,12 @@ public class GenericStackClass<T> {
             stack[zaehler - 1] = null;
         }
     }
+
+    /**
+     * peek returns the last added element without removing it
+     * @return last added element
+     * @throws StackEmptyException stack is empty
+     */
     public T peek() throws StackEmptyException {
         if(this.stack == null) {
             throw new StackEmptyException();
@@ -40,10 +48,18 @@ public class GenericStackClass<T> {
         }
     }
 
+    /**
+     * list returns all added elements in a string seperated by ;
+     * @return String of addes elements
+     */
     public String list() {
         String list = "";
         for(int i = 0; i < stack.length; i++) {
+            if(stack[i] == null) {
+                break;
+            }
             list += stack[i] + ";";
+
         }
         return list;
     }

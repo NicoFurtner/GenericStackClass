@@ -13,7 +13,6 @@ public class TestKlasse {
         } catch (StackFullException | StackEmptyException e) {
             e.printStackTrace();
         }
-
         GenericStackClass<String> stringStack = new GenericStackClass<>(5);
         try {
             stringStack.push("gruesse");
