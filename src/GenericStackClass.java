@@ -1,3 +1,9 @@
+/**
+ * GenericStackClass
+ * @author Nico Furtner
+ * @version 2024-02-21
+ * @param <T>
+ */
 public class GenericStackClass<T> {
     private Object[] stack;
     private int zaehler;
@@ -24,16 +30,20 @@ public class GenericStackClass<T> {
     /**
      * pop method removes the last added element
      * @throws StackEmptyException stack is empty
+     * @param
      */
-    public void pop() throws StackEmptyException {
+    public T pop() throws StackEmptyException {
         if(this.stack == null) {
             throw new StackEmptyException();
         }
         else {
+            String a = "";
+            T backup = (T)stack[zaehler - 1];
+            a +=  stack[zaehler - 1];
             stack[zaehler - 1] = null;
+            return backup;
         }
     }
-
     /**
      * peek returns the last added element without removing it
      * @return last added element
@@ -47,7 +57,6 @@ public class GenericStackClass<T> {
             return (T) stack[zaehler - 1];
         }
     }
-
     /**
      * list returns all added elements in a string seperated by ;
      * @return String of addes elements
@@ -58,8 +67,10 @@ public class GenericStackClass<T> {
             if(stack[i] == null) {
                 break;
             }
-            list += stack[i] + ";";
-
+            list += stack[i];
+            if( i < groeße + 1) {
+                list += ";";
+            }
         }
         return list;
     }
